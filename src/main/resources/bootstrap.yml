@@ -1,0 +1,40 @@
+server:
+  port: 7005
+management:
+  server:
+    port: 8005
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    jmx: 
+      exposure: 
+        include: "*"
+    web: 
+      exposure: 
+        include: "*"
+
+eureka:
+  instance:
+    # 以IP注册到注册中心
+    preferIpAddress: ${EUREKA_INSTANCE_PREFER_IP_ADDRESS:true}
+    # 指定时间内没有数据上报可能会被清理掉
+    leaseRenewalIntervalInSeconds: 3
+    #  服务状态上报间隔
+    leaseExpirationDurationInSeconds: 9
+    # 服务的一些元数据信息
+    metadata-map:
+      VERSION: 0.0.1-SNAPSHOT
+  client:
+    serviceUrl:
+      # 注册中心地址
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://127.0.0.1:7001/eureka}
+    # 拉取服务列表间隔时间
+    registryFetchIntervalSeconds: 3
+    disable-delta: true
+
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:7003
