@@ -20,12 +20,15 @@ eureka:
     preferIpAddress: ${EUREKA_INSTANCE_PREFER_IP_ADDRESS:true}
     # 指定时间内没有数据上报可能会被清理掉
     leaseRenewalIntervalInSeconds: 3
-    #  服务状态上报间隔
+    # 服务状态上报间隔
     leaseExpirationDurationInSeconds: 9
     # 服务的一些元数据信息
     metadata-map:
       VERSION: 0.0.1-SNAPSHOT
   client:
+    # 禁用注册中心
+    #register-with-eureka: false
+    #fetchRegistry: false
     serviceUrl:
       # 注册中心地址
       defaultZone: ${EUREKA_DEFAULT_ZONE:http://127.0.0.1:7001/eureka}
